@@ -1,0 +1,49 @@
+# 13_STACK_ALT_BASLIKLAR
+**Kaynak:** 365_Gun_ASELSAN_HAVELSAN_Tum_Kutuphaneler_Mekanizmalar_Guncel.xlsx
+**Satır sayısı:** 43
+**Sütun sayısı:** 10
+
+| Sıra | Ana Alan | Alt Başlık | Önce Öğreneceğin Mekanizma | Ana Kütüphane/Araçlar | Neden Var? | Önkoşul | Öğrenme Çıktısı | Bağlı Proje | Öncelik |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Bilgisayar Temeli | Binary / sayı sistemleri | bit, byte, endian, signed/unsigned, overflow | Python struct; C++ integer types | Wire protocol ve memory representation için temel. | Yok | Hex dump okuyup byte-level veri açıklayabilmek. | P1/P9 | A1 |
+| 2 | Bilgisayar Temeli | CPU / memory hierarchy | register, cache, RAM, virtual memory, locality | perf, lscpu, C++ | Latency ve performance nedenlerini anlamak. | Binary | Cache/locality ve allocation maliyetini açıklamak. | Tümü | A1 |
+| 3 | C++20 | Ownership & lifetime | RAII, stack/heap, unique/shared ownership, views | STL, sanitizers | Native sistemlerde kaynak ve memory güvenliği. | C++ syntax | Lifetime-safe API tasarlamak. | P1/P9/P11 | A1 |
+| 4 | C++20 | Generic programming | templates, concepts, constexpr, ranges | STL/C++20 | Reusable type-safe systems code. | Core C++ | Generic interface ve compile-time contracts. | P1/P10 | A2 |
+| 5 | Linux/POSIX | Process / syscall | process, fd, signal, fork/exec, mmap | bash, strace, systemd | Programın OS kaynaklarıyla nasıl çalıştığını anlamak. | C++ | Linux daemon/service kurmak. | P1/P12 | A1 |
+| 6 | Concurrency | Threads / synchronization | jthread, mutex, atomics, queue, memory ordering | C++20, TSan, perf | Sensor/network işlerini eşzamanlı yürütmek. | C++/OS | Bounded, race-free pipeline tasarlamak. | P1/P10 | A1 |
+| 7 | IPC | Local process communication | pipe, Unix socket, shared memory, mmap, ring buffer | POSIX APIs | Aynı host süreçleri düşük gecikmeyle bağlamak. | Linux/concurrency | Shared VehicleState/metrics altyapısı. | P1 | A1 |
+| 8 | Networking | IP / socket | IP, subnet, port, TCP, UDP, socket state | ip, ss, Wireshark, Boost.Asio | Cihaz/süreç iletişiminin ana taşıma katmanı. | Linux | TCP/UDP client/server ve packet capture. | P1/P12 | A1 |
+| 9 | Protocol | Binary framing | endianness, header, length, CRC, sequence, version | struct, protobuf, FlatBuffers | Ham byte'ı güvenli typed message'a çevirmek. | Networking | Malformed packet-safe protocol parser. | P1/P9 | A1 |
+| 10 | Media | Realtime video transport | RTP, RTSP, codec, mux/demux, timestamps | GStreamer, FFmpeg, OpenCV | Camera/video pipeline'ının gerçek sistem katmanı. | UDP/TCP | RTP video ingest + latency measurement. | P3/P5 | A2 |
+| 11 | Embedded | MCU architecture | register, interrupt, timer, flash/SRAM | STM32, CMSIS | Donanım kaynaklarını doğrudan kontrol etmek. | C/C++ | Virtual/real MCU firmware temeli. | P9/P11 | A1 |
+| 12 | Embedded | Peripheral buses | UART, SPI, I2C, CAN, RS232/422/485 | Zephyr APIs, STM32 HAL/LL, SocketCAN | Sensor/ECU/device communication. | MCU | 4 bus için driver + timing mental modeli. | P9 | A1 |
+| 13 | RTOS | Scheduler & primitives | task, priority, queue, semaphore, ISR handoff | Zephyr, FreeRTOS | Deadline ve concurrency'yi MCU'da yönetmek. | Embedded/concurrency | RTOS task graph + timing/fault test. | P9/P11 | A1 |
+| 14 | Embedded Networking | MCU TCP/IP | lwIP, buffers, socket/raw API | lwIP, Zephyr networking | MCU'yu IP ağına bağlamak. | RTOS/networking | Sensor→UDP gateway. | P9 | A2 |
+| 15 | DDS | Data-centric middleware | participant, topic, writer/reader, discovery, QoS | Fast DDS, Cyclone DDS | Distributed real-time typed pub/sub. | Networking/protocol | QoS loss/deadline experiment. | P2/P10 | A1 |
+| 16 | ROS2 | Robot middleware | node, topic, service, action, executor, lifecycle | rclcpp/rclpy, rosbag2 | Robot bileşenlerini standart graph halinde entegre etmek. | DDS/Linux | Multi-node robot stack. | P2 | A1 |
+| 17 | Simulation | Robot physics & sensors | world, model, sensors, sim time, plugins | Gazebo Harmonic, RViz2 | Gerçek donanım olmadan repeatable autonomy test. | ROS2 | UGV/UAV scenario automation. | P1/P2/P4 | A1 |
+| 18 | PX4 | Autopilot architecture | uORB, commander, navigator, EKF2, controllers, logger | PX4 SITL, QGroundControl | UAV flight stack ve failsafe mekanizmalarını anlamak. | Control/simulation | PX4 SITL görev ve log analizi. | P1/P8 | A1 |
+| 19 | MAVLink | UAV communication | message, command, ACK, heartbeat, microservices, signing | MAVSDK, pymavlink | Autopilot↔companion↔GCS telemetry/command. | UDP/protocol | Telemetry reader + safe command path. | P1/P8 | A1 |
+| 20 | Computer Vision | Image/video basics | pixel, color, geometry, camera model, video timestamps | OpenCV, NumPy | Perception pipeline'ın fiziksel/veri temeli. | Python/C++ | Calibrated video processing pipeline. | P3/P5/P7 | A1 |
+| 21 | Deep Learning | Tensor models | tensor, dataset, autograd, optimizer, inference | PyTorch, torchvision | Detection/VLM/RL modellerini eğitmek/çalıştırmak. | NumPy/math | Reproducible training/eval. | P3/P4/P7 | A1 |
+| 22 | VLM / Segmentation | Open-vocabulary perception | embeddings, text-image matching, prompt segmentation | Transformers, OpenCLIP, SAM | Kapalı sınıf detector ötesinde semantic target selection. | DL/CV | Text→target→mask→track. | P3 | A2 |
+| 23 | Tracking | Temporal association | Kalman, association, track lifecycle, ID metrics | ByteTrack, Stone Soup, FilterPy | Frame detection'larını zaman içinde kimliğe dönüştürmek. | CV/probability | MOT benchmark + failure analysis. | P3/P7 | A2 |
+| 24 | Deployment | Model graph/runtime | ONNX, execution provider, engine, precision | ONNX Runtime, TensorRT | Training modelini production latency'ye taşımak. | PyTorch/CUDA | FP32/FP16/INT8 benchmark. | P3/P7 | A1 |
+| 25 | GPU | CUDA model | host/device, kernel, block/thread, memory transfer, stream | CUDA C++, CuPy/JAX | GPU performans nedenlerini anlamak. | C++/arrays | Simple CUDA kernel + transfer/kernel timing. | P3/P7 | B1 |
+| 26 | Control | Feedback systems | state, error, PID, state-space, LQR | NumPy/SciPy, control toolbox opsiyonel | Autonomous vehicle/controller davranışı. | Math/physics | PID/LQR baseline. | P4 | A1 |
+| 27 | Estimation | State estimation | Kalman, EKF, covariance, process/measurement noise | FilterPy, GTSAM, Eigen | Noisy GPS/IMU/radar'dan state çıkarmak. | Probability/linear algebra | Sensor fusion RMSE improvement. | P4/P7 | A1 |
+| 28 | RL | Sequential decision | MDP, reward, policy, PPO, domain randomization | PyTorch, Gymnasium | Learned controller/policy araştırmak. | Control/ML | RL vs PID/LQR evaluation. | P4 | A2 |
+| 29 | DSP | Sampling & transforms | sampling, aliasing, IQ, FFT, filtering, correlation | NumPy, SciPy, FFTW | Radar/communications signal işleme temeli. | Complex numbers | FFT/filter lab. | P7 | A1 |
+| 30 | Radar | Detection pipeline | waveform→ADC/IQ→range FFT→Doppler→CFAR | SciPy, FFTW, GNU Radio optional | Target detection ve velocity/range extraction. | DSP | Synthetic range-Doppler detector. | P7 | A1 |
+| 31 | Radar Tracking | Track formation | detection→association→Kalman/IMM→track management | Stone Soup, GTSAM/Eigen | Radar detection'larını stable tracks'e çevirmek. | Radar/probability | Multi-target tracking. | P7 | A2 |
+| 32 | Communications | Digital link | modulation, channel, sync, BER, OFDM, channel estimation | GNU Radio, liquid-dsp, SciPy | 5G/radio ve signal impairment sezgisi. | DSP | QPSK/OFDM channel simulation. | P7/P12 | A2 |
+| 33 | Verification | Requirement-driven test | requirement, acceptance, traceability, regression | GTest, pytest, Robot Framework | Sistemin gereksinimi karşıladığını kanıtlamak. | Software engineering | REQ→TEST→RESULT evidence. | P1/P5/P11 | A1 |
+| 34 | Fault Injection | Resilience tests | loss, delay, sensor fault, process crash, timeout | tc/netem, PX4 faults, pytest | Failure altında detection/recovery ölçmek. | Verification | Fault campaign automation. | P1/P10/P12 | A1 |
+| 35 | SIL/HIL | Simulation verification | software loop, virtual ECU, real controller hardware | PX4 SITL/HITL, Renode, QEMU | Gerçek hardware olmadan/ile farklı kanıt seviyeleri. | Simulation/embedded | SIL→optional HIL path. | P1/P11 | A1 |
+| 36 | 5G | 5G architecture | UE, gNB, AMF, SMF, UPF, AUSF, UDM, NRF, PCF | Open5GS, UERANSIM, srsRAN | 5G SA core/RAN mekanizmasını anlamak. | Networking | Local 5G SA lab. | P12 | A1 |
+| 37 | 5G Protocols | Control/user plane | NAS, NGAP/SCTP, GTP-U, PFCP, HTTP/2 SBI | Wireshark, tshark | Registration/session ve packet path analiz etmek. | 5G architecture | Annotated 5G pcap. | P12 | A1 |
+| 38 | Distributed Systems | Failure & coordination | partial failure, timeout, retry, idempotency, backpressure | gRPC, ZeroMQ, DDS, Redis | Çok süreç/servisli sistemin güvenilirliğini kurmak. | Networking/concurrency | Retry/idempotency/partition labs. | P10/P12 | A1 |
+| 39 | Observability | Metrics/logs/traces | counter, histogram, log context, trace span | Prometheus, Grafana, OpenTelemetry | Sistemin iç davranışını ölçülebilir yapmak. | Distributed systems | Latency/loss/recovery dashboard. | P10/P12 | A2 |
+| 40 | AI Engineering | Data/backend | API, schema validation, DB, cache, vector search | FastAPI, Pydantic, PostgreSQL, Redis, Qdrant | AI çıktısını mühendislik sistemine entegre etmek. | Python/software architecture | Production-style AI service. | P5/P6/P8 | A2 |
+| 41 | AI Evaluation | Grounding & eval | golden set, precision/recall, retrieval metrics, structured output | pytest, sklearn, Qdrant, Pydantic | LLM/RAG sistemini 'çalışıyor' yerine ölçmek. | AI engineering | Repeatable evaluation suite. | P6/P8 | A1 |
+| 42 | Build/Quality | CI & static/dynamic analysis | CMake, sanitizers, fuzzing, lint, test gates | GitHub Actions, clang-tidy, libFuzzer | Projeyi production engineering standardına taşımak. | C++/testing | PR kalite kapıları. | Tümü | A1 |
